@@ -25,7 +25,7 @@ feedparser==6.0.10
 google-api-python-client==1.4.1
 
 # custom logger
-loguru==0.5.3
+loguru==0.6.0
 
 # tailwind support for django
 crispy-tailwind==0.5.0

